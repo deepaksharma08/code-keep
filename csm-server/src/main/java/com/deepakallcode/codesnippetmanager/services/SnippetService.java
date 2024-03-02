@@ -14,7 +14,7 @@ import java.util.*;
 public class SnippetService {
 
     private final RestTemplate restTemplate;
-    private final String apiKey = "AIzaSyAsC__l64bMX62gDGYvtpdUXQlFQ5wAYP0";
+    private final String apiKey = "";
     private final ObjectMapper objectMapper;
     private static final String TITLE_INDENTIFIER = "TITLEOFTHISCODE=";
     private static final String DESCRIPTION_IDENTIFIER = "SNIPPETDESCRIPTION=";
