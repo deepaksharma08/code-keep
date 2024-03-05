@@ -5,6 +5,15 @@ public class UserDTO {
     private Long id;
     private String email;
     private String password;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
