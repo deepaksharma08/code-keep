@@ -1,0 +1,25 @@
+<p-dialog position="center" [closable]="true" id="dialog" [(visible)]="display"
+    [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+    <div>
+        <div>
+            <form [formGroup]="snippetForm" style="left: 0; right: 0; margin: auto; padding: 5%;">
+                <label for="code-snippet">Paste Snippet Here</label>
+                <textarea formControlName="snippetText" rows="6" style="margin-top: 20px;" id="code-snippet"
+                    class="form-control" type="text" placeholder="Paste Code"></textarea>
+                <label class="drop-down-group" for="snippet-type">Choose snippet type: </label>
+                <select class="drop-down-group" id="snippet-type">
+                    <option value="snippet">Snippet</option>
+                    <option value="command">Command</option>
+                    <option value="process">Process</option>
+                </select>
+            </form>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button id="save-button" type="button" class="bi bi-plus-circle-fill btn btn-primary" (click)="saveSnippet">
+            Save
+        </button>
+        <button id="close-button" type="button" class="bi bi-x-circle-fill btn btn-light"
+            (click)="closeDialog()">Close</button>
+    </ng-template>
+</p-dialog>

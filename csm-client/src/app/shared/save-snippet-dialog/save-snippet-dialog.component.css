@@ -1,0 +1,29 @@
+:host ::ng-deep .p-dialog-content {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px 1px 1px 0px solid black;
+    text-align: center;
+    background-color: aliceblue;
+}
+
+
+:host ::ng-deep .p-dialog-footer {
+    border: 0px 1px 1px 1px solid black;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: right;
+    background-color: rgb(217, 228, 243);
+}
+
+#close-button {
+    margin: 5px;
+}
+
+#save-button {
+    margin: 5px;
+}
+
+.drop-down-group {
+    margin: 20px 0 20px 0;
+    float: left;
+}
