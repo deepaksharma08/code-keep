@@ -14,7 +14,27 @@ public class AuthService {
     }
 
     public UserDTO loginUser(UserDTO user) {
-        User userToCheck = new User();
-        return new UserDTO();
+        try {
+            User fetchedUser = userRepository.findByEmail(user.getEmail());
+            if (fetchedUser.getPassword().equals(user.getPassword())) {
+                user.setStatus("SUCCESS");
+            }
+        } catch (Exception e) {
+            user.setStatus("FAILED");
+        }
+        return user;
+    }
+
+    public UserDTO registerUser(UserDTO user) {
+        User userToSave = new User();
+        userToSave.setEmail(user.getEmail());
+        userToSave.setPassword(user.getPassword());
+        try {
+            userRepository.save(userToSave);
+            user.setStatus("SUCCESS");
+        } catch (Exception e) {
+            user.setStatus("FAILED");
+        }
+        return user;
     }
 }

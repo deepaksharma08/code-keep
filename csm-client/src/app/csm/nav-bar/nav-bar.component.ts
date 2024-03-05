@@ -15,7 +15,7 @@ export class NavBarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.router.navigateByUrl('/snippet')
+    this.router.navigateByUrl('csm/snippet')
     document.getElementById('snippet').classList.add('active');
   }
 
@@ -26,19 +26,19 @@ export class NavBarComponent implements OnInit {
   changeActiveTab(id: string) {
     switch (id) {
       case 'snippet':
-        this.router.navigateByUrl('/snippet')
+        this.router.navigateByUrl('csm/snippet')
         document.getElementById('snippet').classList.add('active');
         document.getElementById('commands').classList.remove('active');
         document.getElementById('process').classList.remove('active');
         break;
       case 'commands':
-        this.router.navigateByUrl('/commands')
+        this.router.navigateByUrl('csm/commands')
         document.getElementById('commands').classList.add('active');
         document.getElementById('snippet').classList.remove('active');
         document.getElementById('process').classList.remove('active');
         break;
       case 'process':
-        this.router.navigateByUrl('/process')
+        this.router.navigateByUrl('csm/process')
         document.getElementById('process').classList.add('active');
         document.getElementById('commands').classList.remove('active');
         document.getElementById('snippet').classList.remove('active');

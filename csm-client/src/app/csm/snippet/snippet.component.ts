@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SnippetService } from '../../services/snippet.service';
-import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { SnippetResponse } from 'src/app/domain/snippet-response';
 
 @Component({
@@ -12,7 +10,7 @@ export class SnippetComponent implements OnInit {
   snippets: SnippetResponse[] = [];
   selectedSnippet: SnippetResponse = {} as SnippetResponse;
 
-  constructor(protected snippetService: SnippetService) {
+  constructor() {
     this.snippets = this.generateFakeSnippets();
   }
 

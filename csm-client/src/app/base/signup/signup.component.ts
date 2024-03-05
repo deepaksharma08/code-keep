@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserResponse } from 'src/app/domain/user-response';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
 
-  constructor() {
+  constructor(private authService: AuthService) {
     this.signupForm = new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
@@ -29,6 +31,21 @@ export class SignupComponent implements OnInit {
     if (!this.signupForm.controls['email'].value || !this.signupForm.controls['password'].value || !this.signupForm.controls['confirmPassword'].value) {
       return;
     }
+
+    if (this.f['password'].value === this.f['confirmPassword'].value) {
+      this.authService.register(this.f['email'].value, this.f['password'].value).subscribe(
+        {
+          next: (value: UserResponse) => {
+            console.warn(value.status);
+          }, error: (err: Error) => {
+            console.warn(err.message);
+          }
+        }
+      )
+    } else {
+      alert('Password doesnot match');
+    }
+
   }
 
 }
