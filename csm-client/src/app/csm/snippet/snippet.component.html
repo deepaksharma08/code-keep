@@ -1,32 +1,33 @@
-<!-- 
-
- This is the code snippet addition test
-<div>
-<div>
- Here will be the box where we will paste stuff
-<form [formGroup]="snippetForm" (submit)="saveSnippet()" style="width: 50%; left: 0; right: 0; margin: auto; border: 1px solid black; padding: 5%; border-radius: 20px;">
-    <label for="code-snippet">Paste Snippet Here</label>
-    <textarea formControlName="snippetText" rows="6" style="margin-top: 20px;" id="code-snippet" class="form-control" type="text" placeholder="Paste Code"></textarea>
-    <button style="margin-top: 20px;" type="submit">Save</button>
-</form>
-</div>
-<div>
-Here will be the code where we will show the results
-</div>
-</div>
-   -->
-
 <p-splitter [style]="{'height': '70vh'}" [panelSizes]="[60,40]" layout="horizontal" gutter="true">
     <ng-template pTemplate>
-        <div style="display: flex; flex-direction: column; height: 100%;">
-            <div style="border-bottom: 1px solid black; padding: 10px; margin-bottom: 10px;" (click)="rowClick(item)"
-                *ngFor="let item of snippets">
-                <strong>{{item.title}}</strong><br>
-                <span>{{item.description}}</span>
-            </div>
+        <div style="overflow-y: scroll;">
+            <table class="table table-striped">
+                <thead class="table-dark sticky">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr (click)="rowClick(item)" [ngClass]="i%2 === 0? 'blue': 'green'"
+                        *ngFor="let item of snippets; index as i">
+                        <td>{{item.title}}</td>
+                        <td>{{item.description}}</td>
+                        <td>
+                            <div id="action-items">
+                                <i style="float: left;" class="bi bi-trash"></i>
+                                <i style="float: right;" class="bi bi-pencil"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </ng-template>
     <ng-template pTemplate>
-        <pre><code>{{selectedSnippet.code}}</code></pre>
+        <div style="overflow-y: scroll;">
+            <pre><code>{{selectedSnippet.code}}</code></pre>
+        </div>
     </ng-template>
 </p-splitter>

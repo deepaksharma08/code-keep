@@ -12,7 +12,7 @@ import { CsmModule } from './csm/csm.module';
 @NgModule({
   declarations: [
     AppComponent,
-    BaseComponent
+    BaseComponent,
   ],
   imports: [
     BrowserModule,

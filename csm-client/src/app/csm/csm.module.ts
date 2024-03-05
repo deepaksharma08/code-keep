@@ -8,7 +8,9 @@ import { ProcessComponent } from './process/process.component';
 import { CsmComponent } from './csm.component';
 import { SnippetModule } from './snippet/snippet.module';
 import { NavBarModule } from './nav-bar/nav-bar.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { SaveSnippetDialogModule } from '../shared/save-snippet-dialog/save-snippet-dialog.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -17,12 +19,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeroComponent,
     CsmComponent,
     NavBarComponent,
-    SnippetComponent
   ],
   imports: [
     CommonModule,
     SnippetModule,
-    NavBarModule
+    NavBarModule,
+    RouterModule,
+    SaveSnippetDialogModule,
+    BrowserAnimationsModule
   ],
 })
 export class CsmModule { }

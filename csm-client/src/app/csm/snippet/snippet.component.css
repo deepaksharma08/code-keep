@@ -8,3 +8,12 @@
     margin-bottom: 10px;
     /* Adjust as needed */
 }
+
+#action-items {
+    text-align: center;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+}

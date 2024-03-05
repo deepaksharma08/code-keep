@@ -3,20 +3,22 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SplitterModule} from 'primeng/splitter';
 import {TableModule} from 'primeng/table'
+import { SnippetComponent } from './snippet.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [SnippetComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
     SplitterModule,
-    TableModule
+    TableModule,
   ],
   exports: [
     ReactiveFormsModule,
     SplitterModule,
-    TableModule
+    TableModule,
+    SnippetComponent
   ]
 })
 export class SnippetModule { }

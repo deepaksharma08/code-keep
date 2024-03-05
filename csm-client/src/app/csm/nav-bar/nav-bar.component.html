@@ -1,18 +1,24 @@
 <div class="row">
-    <div class="col-10">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Snippet</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Commands</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Process</a>
-            </li>
-          </ul>
-    </div>
-    <div class="col-2">
-        <button pButton style="float:right;">Add Snippet</button>
-    </div>    
+  <div class="col-10">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a #snippet id="snippet" (click)="changeActiveTab(snippet.id)" class="nav-link">Snippet</a>
+      </li>
+      <li class="nav-item">
+        <a #commands id="commands" (click)="changeActiveTab(commands.id)" class="nav-link">Commands</a>
+      </li>
+      <li class="nav-item">
+        <a #process id="process" (click)="changeActiveTab(process.id)" class="nav-link">Process</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-2">
+    <button pButton class="btn btn-primary bi bi-plus-circle-fill" style="float:right;"
+      (click)="openSaveSnippetDialog()">Add
+      Snippet</button>
+  </div>
 </div>
+
+<save-snippet-dialog #saveDialog>
+
+</save-snippet-dialog>
