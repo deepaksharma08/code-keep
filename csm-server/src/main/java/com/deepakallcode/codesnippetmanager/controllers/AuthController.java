@@ -1,6 +1,5 @@
 package com.deepakallcode.codesnippetmanager.controllers;
 
-import com.deepakallcode.codesnippetmanager.entities.User;
 import com.deepakallcode.codesnippetmanager.models.UserDTO;
 import com.deepakallcode.codesnippetmanager.services.AuthService;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("v1/api/auth")
 public class AuthController {
     private final AuthService authService;
 
