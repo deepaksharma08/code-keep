@@ -8,17 +8,18 @@ import { BaseComponent } from './base/base.component';
 import { HttpClientModule} from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CsmModule } from './csm/csm.module';
+import { BaseModule } from './base/base.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BaseComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    CsmModule
+    CsmModule,
+    BaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

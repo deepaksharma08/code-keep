@@ -6,7 +6,7 @@ import { commandRoute } from "./commands/commands.route";
 
 export const csmRoutes: Route[] = [
     {
-        path: '',
+        path: 'csm',
         component: CsmComponent,
         children: [
             ...snippetRoute,
