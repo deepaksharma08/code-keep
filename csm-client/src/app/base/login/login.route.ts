@@ -5,5 +5,10 @@ export const loginRoute: Route[] = [
     {
         path: '',
         component: LoginComponent
+    },
+
+    {
+        path: 'login',
+        component: LoginComponent
     }
 ]

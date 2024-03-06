@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    sessionStorage.clear;
   }
 
   get f() {
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   performLogin() {
-    if (!this.loginForm.controls['email'].value || !this.loginForm.controls['password'].value) {
+    if (!this.f['email'].value || !this.f['password'].value) {
       return;
     }
 
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
       {
         next: (value: UserResponse) => {
           if (value.status === "SUCCESS") {
+            sessionStorage.setItem("User",value.id.toString());
             this.router.navigateByUrl('csm');
           }
         }, error: (err: Error) => {

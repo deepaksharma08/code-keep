@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SnippetResponse } from 'src/app/domain/snippet-response';
+import { SnippetService } from 'src/app/services/snippet.service';
 
 @Component({
   selector: 'app-snippet',
@@ -10,113 +11,16 @@ export class SnippetComponent implements OnInit {
   snippets: SnippetResponse[] = [];
   selectedSnippet: SnippetResponse = {} as SnippetResponse;
 
-  constructor() {
-    this.snippets = this.generateFakeSnippets();
+  constructor(private snippetService: SnippetService) {
   }
 
   ngOnInit(): void {
 
   }
 
-  private generateFakeSnippets(): SnippetResponse[] {
-    let response: SnippetResponse[] = [
-      {
-        title: "Snippet1Snippet1Snippet1",
-        description: "Description for snippet1.Description for snippet1.Description for snippet1.Description for snippet1.Description for snippet1.Description for snippet1",
-        code: `//variable to store date in string format
-        String yesterdayDate=null; \n
-         
-        //to get calendar instance 
-        Calendar cal = Calendar.getInstance();
-         
-        //subtract 1 from calendar current date 
-        cal.add(Calendar.DATE, -1);
-         
-        //format date
-        DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
-         
-        //get formatted date
-        yesterdayDate=dateFormat.format(cal.getTime());
-         
-        System.out.println("Yesterday's date = "+ yesterdayDate); 
-        /variable to store date in string format
-        String yesterdayDate=null; \n
-         
-        //to get calendar instance 
-        Calendar cal = Calendar.getInstance();
-         
-        //subtract 1 from calendar current date 
-        cal.add(Calendar.DATE, -1);
-         
-        //format date
-        DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
-         
-        //get formatted date
-        yesterdayDate=dateFormat.format(cal.getTime());
-         
-        System.out.println("Yesterday's date = "+ yesterdayDate)
-        /variable to store date in string format
-        String yesterdayDate=null; \n
-         
-        //to get calendar instance 
-        Calendar cal = Calendar.getInstance();
-         
-        //subtract 1 from calendar current date 
-        cal.add(Calendar.DATE, -1);
-         
-        //format date
-        DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
-         
-        //get formatted date
-        yesterdayDate=dateFormat.format(cal.getTime());
-         
-        System.out.println("Yesterday's date = "+ yesterdayDate)
-         `
-      },
-      {
-        title: "Snippet1",
-        description: "Description for snippet1"
-      },
-      {
-        title: "Snippet1",
-        description: "Description for snippet1"
-      },
-      {
-        title: "Snippet1",
-        description: "Description for snippet1"
-      },
-      {
-        title: "Snippet1",
-        description: "Description for snippet1"
-      },
-      {
-        title: "Snippet1",
-        description: "Description for snippet1"
-      },
-      {
-        title: "Snippet1",
-        description: "Description for snippet1"
-      },
-      {
-        title: "Snippet1",
-        description: "Description for snippet1"
-      },
-      {
-        title: "Snippet1",
-        description: "Description for snippet1"
-      },
-      {
-        title: "Snippet1",
-        description: "Description for snippet1"
-      },
-      {
-        title: "Snippet1",
-        description: "Description for snippet1"
-      },
-    ]
-    this.selectedSnippet = response[0];
-    return response;
-  }
+  // private getAllSnippets() {
+  //   this.snippetService.getCodeSnippet()
+  // }
 
   public rowClick(snippet: SnippetResponse) {
     this.selectedSnippet = snippet;
