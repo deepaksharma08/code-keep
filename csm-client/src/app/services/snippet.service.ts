@@ -10,11 +10,12 @@ export class SnippetService {
 
   constructor(private httpClient : HttpClient) { }
   
-  public getCodeSnippet(codeSnippet : string) : Observable<SnippetResponse> {
-    let params = {
-      code : codeSnippet,
-      username : "Deepak"
-    }  
-    return this.httpClient.post<SnippetResponse>("http://localhost:8080/v1/api/snippet/getDetails", params)
+  public saveCodeSnippet(codeSnippet : string, type: string, user: string) : Observable<SnippetResponse> {
+    let params : SnippetResponse = {
+      code: codeSnippet,
+      type: type,
+      userId: user
+    }
+    return this.httpClient.post<SnippetResponse>("http://localhost:8080/v1/api/snippet/saveSnippetDetails", params)
   }
 }

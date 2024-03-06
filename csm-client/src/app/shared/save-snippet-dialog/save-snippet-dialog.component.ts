@@ -33,14 +33,14 @@ export class SaveSnippetDialogComponent implements OnInit {
 
   public saveSnippet() {
 
-    this.snippetService.getCodeSnippet(this.snippetForm.controls['snippetText'].value).subscribe(
-      {
-        next: (value: SnippetResponse) => {
-        }, error(error: Error) {
-          console.error(error.message);
-        }
-      }
-    )
+    // this.snippetService.saveCodeSnippet(this.snippetForm.controls['snippetText'].value).subscribe(
+    //   {
+    //     next: (value: SnippetResponse) => {
+    //     }, error(error: Error) {
+    //       console.error(error.message);
+    //     }
+    //   }
+    // )
   }
 
 }
