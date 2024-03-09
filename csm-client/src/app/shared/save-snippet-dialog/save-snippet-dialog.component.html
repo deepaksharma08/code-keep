@@ -7,7 +7,7 @@
                 <textarea formControlName="snippetText" rows="6" style="margin-top: 20px;" id="code-snippet"
                     class="form-control" type="text" placeholder="Paste Code"></textarea>
                 <label class="drop-down-group" for="snippet-type">Choose snippet type: </label>
-                <select class="drop-down-group" id="snippet-type">
+                <select class="drop-down-group" formControlName="snippetType" id="snippet-type">
                     <option value="snippet">Snippet</option>
                     <option value="command">Command</option>
                     <option value="process">Process</option>
@@ -16,7 +16,7 @@
         </div>
     </div>
     <ng-template pTemplate="footer">
-        <button id="save-button" type="button" class="bi bi-plus-circle-fill btn btn-primary" (click)="saveSnippet">
+        <button id="save-button" type="button" class="bi bi-plus-circle-fill btn btn-primary" (click)="saveSnippet()">
             Save
         </button>
         <button id="close-button" type="button" class="bi bi-x-circle-fill btn btn-light"

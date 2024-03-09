@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SnippetResponse } from 'src/app/domain/snippet-response';
-import { SnippetService } from 'src/app/services/snippet.service';
+import { SnippetDTO } from 'src/app/domain/snippet-response';
 
 @Component({
   selector: 'save-snippet-dialog',
@@ -11,13 +10,22 @@ import { SnippetService } from 'src/app/services/snippet.service';
 export class SaveSnippetDialogComponent implements OnInit {
   display: boolean = false;
   snippetForm: FormGroup;
-  constructor(private snippetService: SnippetService) {
+  @Output()
+  snippetData: EventEmitter<SnippetDTO> = new EventEmitter();
+
+
+  constructor() {
     this.snippetForm = new FormGroup(
       {
         snippetText: new FormControl('', Validators.required),
+        snippetType: new FormControl('', Validators.required)
       }
     )
 
+  }
+
+  get f() {
+    return this.snippetForm.controls;
   }
 
   ngOnInit(): void {
@@ -32,15 +40,18 @@ export class SaveSnippetDialogComponent implements OnInit {
   }
 
   public saveSnippet() {
+    if (!this.f['snippetText']) {
+      return;
+    }
 
-    // this.snippetService.saveCodeSnippet(this.snippetForm.controls['snippetText'].value).subscribe(
-    //   {
-    //     next: (value: SnippetResponse) => {
-    //     }, error(error: Error) {
-    //       console.error(error.message);
-    //     }
-    //   }
-    // )
+    let snippetData: SnippetDTO = {
+      code: this.f['snippetText'].value,
+      type: this.f['snippetType'].value,
+      userId: sessionStorage.getItem("USER")
+    }
+
+    this.snippetData.emit(snippetData);
+    this.closeDialog;
   }
 
 }

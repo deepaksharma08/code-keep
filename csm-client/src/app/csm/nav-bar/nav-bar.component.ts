@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { SnippetDTO } from 'src/app/domain/snippet-response';
+import { SnippetService } from 'src/app/services/snippet.service';
 import { SaveSnippetDialogComponent } from 'src/app/shared/save-snippet-dialog/save-snippet-dialog.component';
 
 @Component({
@@ -12,7 +14,8 @@ export class NavBarComponent implements OnInit {
   @ViewChild('saveDialog')
   private saveSnippetDialog: SaveSnippetDialogComponent;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private snippetService: SnippetService) { }
 
   ngOnInit(): void {
     this.router.navigateByUrl('csm/snippet')
@@ -47,5 +50,16 @@ export class NavBarComponent implements OnInit {
         console.warn("Navigation link not recognized");
         break;
     }
+  }
+
+  snippetDataFromUserReceived(snippetData: SnippetDTO) {
+    this.snippetService.saveCodeSnippet(snippetData).subscribe({
+      next: (value: SnippetDTO) => {
+        console.warn(value.title);
+      },error: (err : Error) => {
+        console.warn(err.message);
+      }
+
+    })
   }
 }

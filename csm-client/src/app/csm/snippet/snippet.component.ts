@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SnippetResponse } from 'src/app/domain/snippet-response';
+import { SnippetDTO } from 'src/app/domain/snippet-response';
 import { SnippetService } from 'src/app/services/snippet.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { SnippetService } from 'src/app/services/snippet.service';
   styleUrls: ['./snippet.component.css']
 })
 export class SnippetComponent implements OnInit {
-  snippets: SnippetResponse[] = [];
-  selectedSnippet: SnippetResponse = {} as SnippetResponse;
+  snippets: SnippetDTO[] = [];
+  selectedSnippet: SnippetDTO = {} as SnippetDTO;
 
   constructor(private snippetService: SnippetService) {
   }
@@ -18,11 +18,7 @@ export class SnippetComponent implements OnInit {
 
   }
 
-  // private getAllSnippets() {
-  //   this.snippetService.getCodeSnippet()
-  // }
-
-  public rowClick(snippet: SnippetResponse) {
+  public rowClick(snippet: SnippetDTO) {
     this.selectedSnippet = snippet;
   }
 

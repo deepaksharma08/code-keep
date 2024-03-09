@@ -1,4 +1,4 @@
-export interface SnippetResponse {
+export interface SnippetDTO {
     title? : string;
     description? : string;
     code: string;
