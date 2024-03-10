@@ -9,17 +9,38 @@ import { SnippetService } from 'src/app/services/snippet.service';
 })
 export class SnippetComponent implements OnInit {
   snippets: SnippetDTO[] = [];
-  selectedSnippet: SnippetDTO = {} as SnippetDTO;
+  selectedSnippetCode: string;
+  emptySnippetView: boolean = false;
 
   constructor(private snippetService: SnippetService) {
   }
 
   ngOnInit(): void {
-
+    this.getAllCodeSnippet();
   }
 
   public rowClick(snippet: SnippetDTO) {
-    this.selectedSnippet = snippet;
+    this.selectedSnippetCode = snippet.code;
+  }
+
+  private getAllCodeSnippet() {
+    let userId = sessionStorage.getItem("USER");
+    this.snippetService.getAllCodeSnippet(userId).subscribe({
+      next: (value: SnippetDTO[]) => {
+        if (value.length > 0) {
+          this.snippets = value.filter(item => item.type === 'snippet');
+          this.selectedSnippetCode = this.snippets[0].code;
+          this.emptySnippetView = false;
+        } else {
+          this.emptySnippetView = true;
+        }
+      }
+      , error: (err: Error) => {
+        console.warn(err);
+        alert("No saved Snippet Found");
+        this.emptySnippetView = true;
+      }
+    })
   }
 
 }

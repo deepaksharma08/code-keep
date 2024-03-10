@@ -37,8 +37,10 @@ export class LoginComponent implements OnInit {
       {
         next: (value: UserResponse) => {
           if (value.status === "SUCCESS") {
-            sessionStorage.setItem("USER",value.id.toString());
+            sessionStorage.setItem("USER", value.id.toString());
             this.router.navigateByUrl('csm');
+          } else {
+            alert("User not found");
           }
         }, error: (err: Error) => {
           alert("Some error occured while logging in");

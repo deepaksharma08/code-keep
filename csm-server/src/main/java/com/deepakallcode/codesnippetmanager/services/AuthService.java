@@ -18,6 +18,7 @@ public class AuthService {
             User fetchedUser = userRepository.findByEmail(user.getEmail());
             if (fetchedUser.getPassword().equals(user.getPassword())) {
                 user.setStatus("SUCCESS");
+                user.setId(fetchedUser.getId());
             }
         } catch (Exception e) {
             user.setStatus("FAILED");

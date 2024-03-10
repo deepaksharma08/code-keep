@@ -1,18 +1,27 @@
-package com.deepakallcode.codesnippetmanager.models;
+package com.deepakallcode.codesnippetmanager.entities;
 
-public class SnippetResponseDTO {
-    private String title;
-    private String description;
-    private String userId;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "snippet")
+public class Snippet {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(length = 65000)
     private String code;
     private String type;
+    private Long userId;
+    private String title;
+    private String description;
 
-    public String getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCode() {
@@ -29,6 +38,14 @@ public class SnippetResponseDTO {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {

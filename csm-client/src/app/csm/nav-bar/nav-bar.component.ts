@@ -22,11 +22,11 @@ export class NavBarComponent implements OnInit {
     document.getElementById('snippet').classList.add('active');
   }
 
-  openSaveSnippetDialog() {
+  public openSaveSnippetDialog() {
     this.saveSnippetDialog.showDialog();
   }
 
-  changeActiveTab(id: string) {
+  public changeActiveTab(id: string) {
     switch (id) {
       case 'snippet':
         this.router.navigateByUrl('csm/snippet')
@@ -52,14 +52,13 @@ export class NavBarComponent implements OnInit {
     }
   }
 
-  snippetDataFromUserReceived(snippetData: SnippetDTO) {
+  public snippetDataFromUserReceived(snippetData: SnippetDTO) {
     this.snippetService.saveCodeSnippet(snippetData).subscribe({
       next: (value: SnippetDTO) => {
         console.warn(value.title);
-      },error: (err : Error) => {
+      }, error: (err: Error) => {
         console.warn(err.message);
       }
-
     })
   }
 }
