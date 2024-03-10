@@ -4,7 +4,6 @@ import com.deepakallcode.codesnippetmanager.entities.Snippet;
 import com.deepakallcode.codesnippetmanager.models.SnippetAPIModel.SnippetAPIResponseDTO;
 import com.deepakallcode.codesnippetmanager.models.SnippetResponseDTO;
 import com.deepakallcode.codesnippetmanager.repositories.SnippetRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;

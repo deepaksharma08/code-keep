@@ -1,1 +1,33 @@
-<p>process works!</p>
+<p-splitter [style]="{'height': '70vh'}" [panelSizes]="[60,40]" layout="horizontal" gutter="true">
+    <ng-template pTemplate>
+        <div style="overflow-y: auto;">
+            <table class="table table-striped">
+                <thead class="table-dark sticky">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr (click)="rowClick(item)" [ngClass]="i%2 === 0? 'blue': 'green'"
+                        *ngFor="let item of snippets; index as i">
+                        <td>{{item.title}}</td>
+                        <td>{{item.description}}</td>
+                        <td>
+                            <div id="action-items">
+                                <i style="float: left;" class="bi bi-trash"></i>
+                                <i style="float: right;" class="bi bi-pencil"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-template>
+    <ng-template pTemplate>
+        <div style="overflow-y: auto;">
+            <code><pre>{{selectedSnippetCode}}</pre></code>
+        </div>
+    </ng-template>
+</p-splitter>

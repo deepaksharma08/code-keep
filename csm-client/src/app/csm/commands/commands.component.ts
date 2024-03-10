@@ -27,9 +27,13 @@ export class CommandsComponent implements OnInit {
     this.snippetService.getAllCodeSnippet(userId).subscribe({
       next: (value: SnippetDTO[]) => {
         if (value.length > 0) {
-          this.snippets = value.filter(item => item.type === 'snippet');
-          this.selectedSnippetCode = this.snippets[0].code;
-          this.emptySnippetView = false;
+          this.snippets = value.filter(item => item.type === 'command');
+          if (this.snippets.length > 0) {
+            this.emptySnippetView = false;
+            this.selectedSnippetCode = this.snippets[0].code;
+          } else {
+            this.emptySnippetView = true;
+          }
         } else {
           this.emptySnippetView = true;
         }

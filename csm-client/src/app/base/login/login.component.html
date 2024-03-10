@@ -1,18 +1,19 @@
-<div>
-    <div style="width: 50%;" class="container">
+<div id="parent-div" class="vertically-center">
+    <div id="child-div" style="width: 40%;" class="container">
+        <h1>Code KEEP</h1>
         <form [formGroup]="loginForm" (submit)="performLogin()">
-            <div class="mb-3">
-                <label for="email">Enter Email</label>
+            <div class="mb-3 form-floating">
                 <input id="email" type="email" placeholder="Enter Email" required class="form-control"
                     formControlName="email">
+                <label for="email">Enter Email</label>
             </div>
-            <div class="mb-3">
-                <label for="password">Enter Password</label>
+            <div class="mb-3 form-floating">
                 <input class="form-control" type="password" formControlName="password" placeholder="Enter Password"
                     required="" id="password">
+                <label for="password">Enter Password</label>
             </div>
             <button class="btn btn-primary" type="submit">Login</button>
         </form>
-
+        <span style="margin-top: 10px;">Dont have an account?<strong (click)="signupLinkClick()">Sign Up</strong></span>
     </div>
 </div>

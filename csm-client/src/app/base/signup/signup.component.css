@@ -1,0 +1,31 @@
+#parent-div {
+    height: 100vh;
+}
+
+.vertically-center {
+    display: flex;
+    align-items: center;
+}
+
+#child-div {
+    border-radius: 5%;
+    padding: 30px;
+    -webkit-box-shadow: -1px 2px 15px 0px rgba(0, 0, 0, 0.42);
+    -moz-box-shadow: -1px 2px 15px 0px rgba(0, 0, 0, 0.42);
+    box-shadow: -1px 2px 15px 0px rgba(0, 0, 0, 0.42);
+}
+
+h1 {
+    text-align: center;
+    color: rgb(131, 184, 230);
+    font-family: 'Poppins'
+}
+
+strong {
+    cursor: pointer;
+    color: rgb(12, 112, 199) ;
+}
+
+form {
+    margin-bottom: 20px;
+}

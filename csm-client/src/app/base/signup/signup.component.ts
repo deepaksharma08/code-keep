@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserResponse } from 'src/app/domain/user-response';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -10,8 +11,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
+  showPassword: boolean = false;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+    private router: Router) {
     this.signupForm = new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
@@ -44,6 +47,24 @@ export class SignupComponent implements OnInit {
       )
     } else {
       alert('Password doesnot match');
+    }
+  }
+
+  onLoginLinkClick() {
+    this.router.navigateByUrl('login');
+  }
+
+  showPasswordToggle() {
+    this.showPassword = !this.showPassword;
+    let elements = document.getElementsByClassName('pass-input');
+    if (this.showPassword) {
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].setAttribute('type', 'text');
+      }
+    } else {
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].setAttribute('type', 'password');
+      }
     }
 
   }
