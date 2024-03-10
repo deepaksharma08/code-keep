@@ -10,15 +10,15 @@ import { SnippetDTO } from 'src/app/domain/snippet-response';
 export class SaveSnippetDialogComponent implements OnInit {
   display: boolean = false;
   snippetForm: FormGroup;
+
   @Output()
   snippetData: EventEmitter<SnippetDTO> = new EventEmitter();
-
 
   constructor() {
     this.snippetForm = new FormGroup(
       {
         snippetText: new FormControl('', Validators.required),
-        snippetType: new FormControl('', Validators.required)
+        snippetType: new FormControl('snippet', Validators.required)
       }
     )
 
@@ -49,9 +49,8 @@ export class SaveSnippetDialogComponent implements OnInit {
       type: this.f['snippetType'].value,
       userId: sessionStorage.getItem("USER")
     }
-
+    this.closeDialog();
     this.snippetData.emit(snippetData);
-    this.closeDialog;
   }
 
 }

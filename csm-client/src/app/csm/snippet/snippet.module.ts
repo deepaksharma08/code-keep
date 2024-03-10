@@ -9,13 +9,11 @@ import { SnippetComponent } from './snippet.component';
   declarations: [SnippetComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     FormsModule,
     SplitterModule,
     TableModule,
   ],
   exports: [
-    ReactiveFormsModule,
     SplitterModule,
     TableModule,
     SnippetComponent

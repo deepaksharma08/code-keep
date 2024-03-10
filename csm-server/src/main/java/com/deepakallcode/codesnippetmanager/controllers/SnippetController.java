@@ -1,6 +1,6 @@
 package com.deepakallcode.codesnippetmanager.controllers;
 
-import com.deepakallcode.codesnippetmanager.models.CodeSnippetDTO;
+
 import com.deepakallcode.codesnippetmanager.models.SnippetResponseDTO;
 import com.deepakallcode.codesnippetmanager.services.SnippetService;
 import org.springframework.http.HttpStatus;
@@ -8,27 +8,53 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("v1/api/snippet")
 public class SnippetController {
 
     private final SnippetService snippetService;
 
-    SnippetController(SnippetService snippetService){
+    SnippetController(SnippetService snippetService) {
         this.snippetService = snippetService;
     }
 
-    @PostMapping("getDetails")
-    public ResponseEntity<SnippetResponseDTO> getSnippetDetails(@RequestBody CodeSnippetDTO codeSnippet) {
+    @PostMapping("saveSnippetDetails")
+    public ResponseEntity<SnippetResponseDTO> saveSnippet(@RequestBody SnippetResponseDTO snippetResponseDTO) {
         ResponseEntity<SnippetResponseDTO> responseEntity = null;
         try {
-            SnippetResponseDTO details =  snippetService.getSnippetDetailsFromChatGpt(codeSnippet.getCode());
+            SnippetResponseDTO details = snippetService.saveSnippet(snippetResponseDTO);
             responseEntity = new ResponseEntity<>(details, HttpStatus.OK);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<>(new SnippetResponseDTO(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
         return responseEntity;
+    }
 
+    @GetMapping("getAllSnippets/{userId}")
+    public ResponseEntity<List<SnippetResponseDTO>> getAllSnippet(@PathVariable("userId") String userId) {
+        ResponseEntity<List<SnippetResponseDTO>> response = null;
+
+        try {
+            List<SnippetResponseDTO> snippets = snippetService.getSnippets(userId);
+            response = new ResponseEntity<>(snippets, HttpStatus.OK);
+        }catch (Exception e) {
+            response = new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
+    @GetMapping("getSnippetsByType/{type}")
+    public ResponseEntity<List<SnippetResponseDTO>> getSnippetsByType(@PathVariable("type") String type) {
+        ResponseEntity<List<SnippetResponseDTO>> response = null;
+
+        try {
+            List<SnippetResponseDTO> snippets = snippetService.getSnippetsByType(type);
+            response = new ResponseEntity<>(snippets, HttpStatus.OK);
+        } catch (Exception e) {
+            response = new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
     }
 }
