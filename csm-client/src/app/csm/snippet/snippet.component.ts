@@ -29,8 +29,12 @@ export class SnippetComponent implements OnInit {
       next: (value: SnippetDTO[]) => {
         if (value.length > 0) {
           this.snippets = value.filter(item => item.type === 'snippet');
-          this.selectedSnippetCode = this.snippets[0].code;
-          this.emptySnippetView = false;
+          if (this.snippets.length > 0) {
+            this.emptySnippetView = false;
+            this.selectedSnippetCode = this.snippets[0].code;
+          } else {
+            this.emptySnippetView = false;
+          }
         } else {
           this.emptySnippetView = true;
         }

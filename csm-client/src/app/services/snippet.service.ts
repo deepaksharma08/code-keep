@@ -32,8 +32,8 @@ export class SnippetService {
       userId: snippet.userId
     }
 
-    // return this.httpClient.post<SnippetDTO>(url, params);
-    return of({} as SnippetDTO);
+    return this.httpClient.post<SnippetDTO>(url, params);
+    // return of({} as SnippetDTO);
   }
 
   public getAllCodeSnippet(userId: string): Observable<SnippetDTO[]> {

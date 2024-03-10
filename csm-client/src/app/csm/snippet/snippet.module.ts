@@ -9,7 +9,6 @@ import { SnippetComponent } from './snippet.component';
   declarations: [SnippetComponent],
   imports: [
     CommonModule,
-    FormsModule,
     SplitterModule,
     TableModule,
   ],

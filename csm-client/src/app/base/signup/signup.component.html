@@ -1,19 +1,36 @@
-<div class="container" style="width: 50%;">
-    <form [formGroup]="signupForm" (submit)="performRegistration()">
-        <div class="mb-3">
-            <label for="email">Enter Email</label>
-            <input type="email" placeholder="Enter Email" required class="form-control" id="email" formControlName="email">
-        </div>
-        <div class="mb-3">
-            <label for="password">Enter Password</label>
-            <input id="password" formControlName="password" required class="form-control" type="password"
-                placeholder="Enter Password">
-        </div>
-        <div class="mb-3">
-            <label for="confirmPassword">Confirm Password</label>
-            <input formControlName="confirmPassword" class="form-control" id="confirmPassword" type="password" required
-                placeholder="Confirm Password">
-        </div>
-        <button class="btn btn-primary" type="submit">Sign Up</button>
-    </form>
+<div id="parent-div" class="vertically-center">
+    <div id="child-div" class="container" style="width: 40%;">
+        <h1>Code KEEP</h1>
+        <form [formGroup]="signupForm" (submit)="performRegistration()">
+            <div class="mb-3">
+                <label for="email">Enter Email</label>
+                <input type="email" required class="form-control" id="email" formControlName="email">
+            </div>
+            <div class="mb-3">
+                <label for="password">Enter Password</label>
+                <div class="input-group">
+                    <input id="password" formControlName="password" required class="form-control pass-input"
+                        type="password">
+                    <div class="input-group-append">
+                        <button (click)="showPasswordToggle()" class="btn btn-outline-secondary" type="button"><i
+                                [ngClass]="showPassword?'bi bi-eye-slash':'bi bi-eye'"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword">Confirm Password</label>
+                <div class="input-group">
+                    <input formControlName="confirmPassword" class="form-control pass-input" id="confirmPassword"
+                        type="password" required>
+                    <div class="input-group-append">
+                        <button (click)="showPasswordToggle()" class="btn btn-outline-secondary" type="button"><i
+                                [ngClass]="showPassword?'bi bi-eye-slash':'bi bi-eye'"></i></button>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Sign Up</button>
+        </form>
+        <span>Already Registered?<strong (click)="onLoginLinkClick()">Login</strong></span>
+    </div>
+
 </div>
