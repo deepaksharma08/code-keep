@@ -3,12 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CsmComponent } from './csm/csm.component';
-import { BaseComponent } from './base/base.component';
 import { HttpClientModule} from '@angular/common/http'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CsmModule } from './csm/csm.module';
 import { BaseModule } from './base/base.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,9 @@ import { BaseModule } from './base/base.module';
     HttpClientModule,
     AppRoutingModule,
     CsmModule,
-    BaseModule
+    BaseModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

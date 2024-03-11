@@ -28,9 +28,9 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Sign Up</button>
+            <button [disabled]="disableSubmitButton" class="btn btn-primary" type="submit">Sign Up</button>
         </form>
-        <span>Already Registered?<strong (click)="onLoginLinkClick()">Login</strong></span>
+        <span>Already Registered?<strong (click)="navigateToLogin()">Login</strong></span>
     </div>
 
 </div>
