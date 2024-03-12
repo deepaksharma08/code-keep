@@ -1,5 +1,6 @@
 #parent-div {
     height: 100vh;
+    background-color: rgba(190, 206, 226, 0.815);
 }
 
 .vertically-center {
@@ -7,7 +8,15 @@
     align-items: center;
 }
 
+.image-div {
+    margin-left: auto;
+}
+
 #child-div {
+    background-color: rgba(234, 255, 175, 0.507);
+    opacity: 90%;
+    margin-left: 0;
+    width: 40%;
     border-radius: 5%;
     padding: 30px;
     -webkit-box-shadow: -1px 2px 15px 0px rgba(0, 0, 0, 0.42);
@@ -15,15 +24,26 @@
     box-shadow: -1px 2px 15px 0px rgba(0, 0, 0, 0.42);
 }
 
+@media screen and (max-width : 1200px) {
+    #child-div {
+        width: 90%;
+        margin-left: auto;
+    }
+
+    .image-div {
+        display: none;
+    }
+}
+
 h1 {
     text-align: center;
-    color: rgb(131, 184, 230);
+    color: rgb(12, 112, 199);
     font-family: 'Poppins'
 }
 
 strong {
     cursor: pointer;
-    color: rgb(12, 112, 199) ;
+    color: rgb(12, 112, 199);
 }
 
 form {
