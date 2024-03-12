@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserResponse } from 'src/app/domain/user-response';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,11 +10,13 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(private authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    private toast: ToastrService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -21,6 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    sessionStorage.clear;
     sessionStorage.clear;
   }
 
@@ -38,12 +42,13 @@ export class LoginComponent implements OnInit {
         next: (value: UserResponse) => {
           if (value.status === "SUCCESS") {
             sessionStorage.setItem("USER", value.id.toString());
+            sessionStorage.setItem("token","DUMMY-TOKEN");
             this.router.navigateByUrl('csm');
           } else {
-            alert("User not found");
+            this.toast.error("User not found", "Please verify email and password");
           }
         }, error: (err: Error) => {
-          alert("Some error occured while logging in");
+          this.toast.error("There was an issue logging you in, Please try again later.");
         }
       }
     )

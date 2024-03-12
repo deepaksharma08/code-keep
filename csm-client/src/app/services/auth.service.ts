@@ -9,7 +9,10 @@ import { UserResponse } from "../domain/user-response";
 )
 export class AuthService {
     constructor(private http: HttpClient) {
+    }
 
+    public isAuthenticUser(): boolean {
+        return !!sessionStorage.getItem('token');
     }
 
     public login(email: string, password: string): Observable<UserResponse> {
