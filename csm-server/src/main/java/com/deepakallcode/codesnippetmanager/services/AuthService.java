@@ -3,6 +3,7 @@ package com.deepakallcode.codesnippetmanager.services;
 import com.deepakallcode.codesnippetmanager.entities.User;
 import com.deepakallcode.codesnippetmanager.models.UserDTO;
 import com.deepakallcode.codesnippetmanager.repositories.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,5 +38,15 @@ public class AuthService {
             user.setStatus("FAILED");
         }
         return user;
+    }
+
+    public UserDetails getUserFromEmail(String email) {
+        User user;
+        try {
+            user = userRepository.findByEmail(email);
+        }catch (Exception e) {
+            user = new User();
+        }
+        return (UserDetails) user;
     }
 }
