@@ -1,26 +1,33 @@
 package com.deepakallcode.codesnippetmanager.services;
 
 import com.deepakallcode.codesnippetmanager.entities.User;
+import com.deepakallcode.codesnippetmanager.enums.Role;
 import com.deepakallcode.codesnippetmanager.models.UserDTO;
 import com.deepakallcode.codesnippetmanager.repositories.UserRepository;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
-    AuthService(UserRepository userRepository) {
+    AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
     }
 
     public UserDTO loginUser(UserDTO user) {
         try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
             User fetchedUser = userRepository.findByEmail(user.getEmail());
-            if (fetchedUser.getPassword().equals(user.getPassword())) {
-                user.setStatus("SUCCESS");
-                user.setId(fetchedUser.getId());
-            }
+            user.setToken(jwtService.generateJwtToken(fetchedUser));
         } catch (Exception e) {
             user.setStatus("FAILED");
         }
@@ -30,7 +37,8 @@ public class AuthService {
     public UserDTO registerUser(UserDTO user) {
         User userToSave = new User();
         userToSave.setEmail(user.getEmail());
-        userToSave.setPassword(user.getPassword());
+        userToSave.setPassword(passwordEncoder.encode(user.getPassword()));
+        userToSave.setRole(Role.User);
         try {
             userRepository.save(userToSave);
             user.setStatus("SUCCESS");
@@ -38,15 +46,5 @@ public class AuthService {
             user.setStatus("FAILED");
         }
         return user;
-    }
-
-    public UserDetails getUserFromEmail(String email) {
-        User user;
-        try {
-            user = userRepository.findByEmail(email);
-        }catch (Exception e) {
-            user = new User();
-        }
-        return (UserDetails) user;
     }
 }
