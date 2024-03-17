@@ -36,3 +36,7 @@ strong {
 form {
     margin-bottom: 20px;
 }
+
+.input-error {
+    color: red;
+}

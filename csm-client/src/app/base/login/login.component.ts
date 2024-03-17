@@ -13,13 +13,15 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  emailValid: boolean = true;
+  passwordValid: boolean;
 
   constructor(private authService: AuthService,
     private router: Router,
     private toast: ToastrService) {
     this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)])
     })
   }
 
@@ -40,9 +42,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.f['email'].value, this.f['password'].value).subscribe(
       {
         next: (value: UserResponse) => {
-          if (value.status === "SUCCESS") {
+          if (value.token) {
             sessionStorage.setItem("USER", value.id.toString());
-            sessionStorage.setItem("token","DUMMY-TOKEN");
+            sessionStorage.setItem("token", value.token);
             this.router.navigateByUrl('csm');
           } else {
             this.toast.error("User not found", "Please verify email and password");
@@ -56,6 +58,23 @@ export class LoginComponent implements OnInit {
 
   signupLinkClick() {
     this.router.navigateByUrl('signup');
+  }
+
+  focusOut(item: string) {
+    switch (item) {
+      case 'email':
+        if (this.f['email'].valid) {
+          this.emailValid = true;
+        } else {
+          this.emailValid = false;
+        }
+        break;
+      case 'pass':
+        //
+        break;
+      default:
+        break;
+    }
   }
 
 }

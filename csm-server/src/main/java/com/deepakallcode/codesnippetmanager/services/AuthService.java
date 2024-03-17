@@ -28,6 +28,7 @@ public class AuthService {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
             User fetchedUser = userRepository.findByEmail(user.getEmail());
             user.setToken(jwtService.generateJwtToken(fetchedUser));
+            user.setId(fetchedUser.getId());
         } catch (Exception e) {
             user.setStatus("FAILED");
         }

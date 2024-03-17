@@ -2,13 +2,14 @@
     <div id="child-div" class="container">
         <h1>Code KEEP</h1>
         <form [formGroup]="loginForm" (submit)="performLogin()">
+            <span *ngIf="!emailValid" class="input-error">Please enter a valid email</span>
             <div class="mb-3 form-floating">
-                <input id="email" type="email" placeholder="Enter Email" required class="form-control"
-                    formControlName="email">
+                <input id="email" (focusout)="focusOut('email')" type="email" placeholder="Enter Email" required
+                    class="form-control" formControlName="email">
                 <label for="email">Enter Email</label>
             </div>
             <div class="mb-3 form-floating">
-                <input class="form-control" type="password" formControlName="password" placeholder="Enter Password"
+                <input class="form-control" (focusout)="focusOut('pass')" type="password" formControlName="password" placeholder="Enter Password"
                     required="" id="password">
                 <label for="password">Enter Password</label>
             </div>

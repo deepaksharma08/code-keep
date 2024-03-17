@@ -1,4 +1,7 @@
-<p-splitter [style]="{'height': '70vh'}" [panelSizes]="[60,40]" layout="horizontal" gutter="true">
+<div *ngIf="emptySnippetView">
+    <span>No saved snippet. Click on <strong>Add Snippet Button</strong> to save snippet</span>
+</div>
+<p-splitter *ngIf="!emptySnippetView" [style]="{'height': '70vh'}" [panelSizes]="[60,40]" layout="horizontal" gutter="true">
     <ng-template pTemplate>
         <div style="overflow-y: auto;">
             <table class="table table-striped">
