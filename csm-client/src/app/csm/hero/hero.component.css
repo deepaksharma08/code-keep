@@ -1,9 +1,20 @@
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: #88A9C3;
 }
 
 .shadow {
-    -webkit-box-shadow: -8px 10px 10px -3px rgba(114,151,168,1);
--moz-box-shadow: -8px 10px 10px -3px rgba(114,151,168,1);
-box-shadow: -8px 10px 10px -3pxrgba(114,151,168,1);
+    -webkit-box-shadow: -8px 10px 10px -3px rgba(114, 151, 168, 1);
+    -moz-box-shadow: -8px 10px 10px -3px rgba(114, 151, 168, 1);
+    box-shadow: -8px 10px 10px -3pxrgba(114, 151, 168, 1);
+}
+
+.logout {
+    position: absolute;
+    right: 0;
+    top: 0;
 }

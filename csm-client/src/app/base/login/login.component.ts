@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
             this.toast.error("User not found", "Please verify email and password");
           }
         }, error: (err: Error) => {
+          console.error(err);
           this.toast.error("There was an issue logging you in, Please try again later.");
         }
       }
@@ -78,5 +79,4 @@ export class LoginComponent implements OnInit {
       return false;
     } else return true;
   }
-
 }

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { SnippetDTO } from 'src/app/domain/snippet-response';
+import { InstructionService } from 'src/app/services/instruction.service';
 import { SnippetService } from 'src/app/services/snippet.service';
 
 @Component({
@@ -8,16 +10,32 @@ import { SnippetService } from 'src/app/services/snippet.service';
   templateUrl: './snippet.component.html',
   styleUrls: ['./snippet.component.css']
 })
-export class SnippetComponent implements OnInit {
+export class SnippetComponent implements OnInit, OnDestroy {
   snippets: SnippetDTO[] = [];
   selectedSnippetCode: string;
   emptySnippetView: boolean = true;
+  subscriptions: Subscription[] = [];
 
   constructor(private snippetService: SnippetService,
-    private toast: ToastrService) {
+    private toast: ToastrService,
+    private instructionService: InstructionService) {
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(item => {
+      item.unsubscribe();
+    })
   }
 
   ngOnInit(): void {
+    this.subscriptions.push(this.instructionService.getInstruction().subscribe({
+      next: (instruction: string) => {
+        this.handleInstruction(instruction);
+      }, error: (err: Error) => {
+        console.error("There was an error handling instruction[snippet component] " + err.message)
+      }
+    }))
+    
     this.getAllCodeSnippet();
   }
 
@@ -43,16 +61,22 @@ export class SnippetComponent implements OnInit {
       }
       , error: (err: Error) => {
         console.warn(err);
-        
+
         alert("No saved Snippet Found");
         this.emptySnippetView = true;
       }
     })
   }
 
-  copySnippetToClipBoard() {
+  public copySnippetToClipBoard() {
     navigator.clipboard.writeText(this.selectedSnippetCode);
     this.toast.success("Copied To Clipboard!!")
+  }
+
+  private handleInstruction(instruction: string) {
+    if (instruction === 'snippet') {
+      this.getAllCodeSnippet();
+    }
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { SnippetDTO } from 'src/app/domain/snippet-response';
+import { InstructionService } from 'src/app/services/instruction.service';
 import { SnippetService } from 'src/app/services/snippet.service';
 import { SaveSnippetDialogComponent } from 'src/app/shared/save-snippet-dialog/save-snippet-dialog.component';
 
@@ -15,7 +16,8 @@ export class NavBarComponent implements OnInit {
   private saveSnippetDialog: SaveSnippetDialogComponent;
 
   constructor(private router: Router,
-    private snippetService: SnippetService) { }
+    private snippetService: SnippetService,
+    private instructionService: InstructionService) { }
 
   ngOnInit(): void {
     this.router.navigateByUrl('csm/snippet')
@@ -55,7 +57,7 @@ export class NavBarComponent implements OnInit {
   public snippetDataFromUserReceived(snippetData: SnippetDTO) {
     this.snippetService.saveCodeSnippet(snippetData).subscribe({
       next: (value: SnippetDTO) => {
-        this.router.navigateByUrl('csm/'.concat(value.type))
+        this.instructionService.sendInstruction(value.type);
       }, error: (err: Error) => {
         console.warn(err.message);
       }

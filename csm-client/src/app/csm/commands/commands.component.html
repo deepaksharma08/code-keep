@@ -30,8 +30,13 @@
         </div>
     </ng-template>
     <ng-template pTemplate>
-        <div style="overflow-y: auto;">
+        <div>
+            <div>
+                <button title="Copy to Clipboard" (click)="copySnippetToClipBoard()"
+                    class="bi bi-clipboard copy-button"></button>
+            </div>
             <code><pre style="white-space: pre-wrap;">{{selectedSnippetCode}}</pre></code>
         </div>
+
     </ng-template>
 </p-splitter>

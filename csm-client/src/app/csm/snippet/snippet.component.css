@@ -19,7 +19,7 @@
 }
 
 .copy-button {
-    position: relative;
-    float: right;
+    position: absolute;
+    right: 20px;
     z-index: 9999 !important;
 }

@@ -2,26 +2,30 @@
     <div id="child-div" class="container">
         <h1>Code KEEP</h1>
         <form [formGroup]="signupForm" (submit)="performRegistration()">
+            <span *ngIf="!emailValid" class="input-error">Please enter a valid email address</span>
             <div class="mb-3">
                 <label for="email">Enter Email</label>
-                <input type="email" required class="form-control" id="email" formControlName="email">
+                <input type="email" (focusout)="validateForm('email')" required class="form-control" id="email"
+                    formControlName="email">
             </div>
+            <span *ngIf="!passwordValid" class="input-error">Password must be of atleast 8 characters</span>
             <div class="mb-3">
                 <label for="password">Enter Password</label>
                 <div class="input-group">
-                    <input id="password" formControlName="password" required class="form-control pass-input"
-                        type="password">
+                    <input id="password" (focusout)="validateForm('password')" formControlName="password" required
+                        class="form-control pass-input" type="password">
                     <div class="input-group-append">
                         <button (click)="showPasswordToggle()" class="btn btn-outline-secondary" type="button"><i
                                 [ngClass]="showPassword?'bi bi-eye-slash':'bi bi-eye'"></i></button>
                     </div>
                 </div>
             </div>
+            <span *ngIf="!confirmPasswordValid" class="input-error">Password must be of atleast 8 characters</span>
             <div class="mb-3">
                 <label for="confirmPassword">Confirm Password</label>
                 <div class="input-group">
-                    <input formControlName="confirmPassword" class="form-control pass-input" id="confirmPassword"
-                        type="password" required>
+                    <input formControlName="confirmPassword" (focusout)="validateForm('confirmn')"
+                        class="form-control pass-input" id="confirmPassword" type="password" required>
                     <div class="input-group-append">
                         <button (click)="showPasswordToggle()" class="btn btn-outline-secondary" type="button"><i
                                 [ngClass]="showPassword?'bi bi-eye-slash':'bi bi-eye'"></i></button>

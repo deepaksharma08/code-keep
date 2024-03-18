@@ -6,6 +6,7 @@ h1 {
 
 #parent-div {
     height: 100vh;
+    background-color: rgba(190, 206, 226, 0.815);
 }
 
 .vertically-center {
@@ -14,8 +15,10 @@ h1 {
 }
 
 #child-div {
-    border-radius: 5%;
+    background-color: rgba(234, 255, 175, 0.507);
+    opacity: 90%;
     width: 40%;
+    border-radius: 5%;
     padding: 30px;
     -webkit-box-shadow: -1px 2px 15px 0px rgba(0, 0, 0, 0.42);
     -moz-box-shadow: -1px 2px 15px 0px rgba(0, 0, 0, 0.42);

@@ -14,6 +14,9 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   showPassword: boolean = false;
   disableSubmitButton = false;
+  emailValid: boolean = true;
+  passwordValid: boolean = true;
+  confirmPasswordValid: boolean = true;
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -23,9 +26,9 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required)
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)])
     })
   }
 
@@ -81,6 +84,22 @@ export class SignupComponent implements OnInit {
   private changePasswordInputType(elements: HTMLCollectionOf<Element>, type: string) {
     for (let i = 0; i < elements.length; i++) {
       elements[i].setAttribute('type', type);
+    }
+  }
+
+  validateForm(input: string) {
+    switch (input) {
+      case 'email':
+        this.emailValid = this.f['email'].valid;
+        break;
+      case 'password':
+        this.passwordValid = !(this.f['password'].value.length < 7);
+        break;
+      case 'confirm':
+        this.confirmPasswordValid = !(this.f['confirmPassword'].value.length < 7);
+        break;
+      default:
+        break;
     }
   }
 
