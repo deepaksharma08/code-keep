@@ -3,7 +3,7 @@ import { CommandsComponent } from "./commands.component";
 
 export const commandRoute: Route[] = [
     {
-        path: 'commands',
+        path: 'command',
         component: CommandsComponent
     }
 ]

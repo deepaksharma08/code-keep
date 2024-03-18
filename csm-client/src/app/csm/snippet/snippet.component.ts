@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { SnippetDTO } from 'src/app/domain/snippet-response';
 import { SnippetService } from 'src/app/services/snippet.service';
 
@@ -10,9 +11,10 @@ import { SnippetService } from 'src/app/services/snippet.service';
 export class SnippetComponent implements OnInit {
   snippets: SnippetDTO[] = [];
   selectedSnippetCode: string;
-  emptySnippetView: boolean = false;
+  emptySnippetView: boolean = true;
 
-  constructor(private snippetService: SnippetService) {
+  constructor(private snippetService: SnippetService,
+    private toast: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -33,7 +35,7 @@ export class SnippetComponent implements OnInit {
             this.emptySnippetView = false;
             this.selectedSnippetCode = this.snippets[0].code;
           } else {
-            this.emptySnippetView = false;
+            this.emptySnippetView = true;
           }
         } else {
           this.emptySnippetView = true;
@@ -41,10 +43,16 @@ export class SnippetComponent implements OnInit {
       }
       , error: (err: Error) => {
         console.warn(err);
+        
         alert("No saved Snippet Found");
         this.emptySnippetView = true;
       }
     })
+  }
+
+  copySnippetToClipBoard() {
+    navigator.clipboard.writeText(this.selectedSnippetCode);
+    this.toast.success("Copied To Clipboard!!")
   }
 
 }

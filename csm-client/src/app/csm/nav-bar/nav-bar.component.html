@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-10">
-    <ul class="nav nav-tabs">
+    <nav class="nav nav-tabs">
       <li class="nav-item">
         <a #snippet id="snippet" (click)="changeActiveTab(snippet.id)" class="nav-link">Snippet</a>
       </li>
@@ -10,11 +10,11 @@
       <li class="nav-item">
         <a #process id="process" (click)="changeActiveTab(process.id)" class="nav-link">Process</a>
       </li>
-    </ul>
+    </nav>
   </div>
   <div class="col-2">
-    <button pButton class="btn btn-primary bi bi-plus-circle-fill" style="float:right;"
-      (click)="openSaveSnippetDialog()">Add
+    <button pButton class="btn btn-primary bi bi-plus-circle" style="float:right;" (click)="openSaveSnippetDialog()">
+      Add
       Snippet</button>
   </div>
 </div>

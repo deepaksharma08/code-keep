@@ -10,7 +10,7 @@ import { SnippetService } from 'src/app/services/snippet.service';
 export class ProcessComponent implements OnInit {
   snippets: SnippetDTO[] = [];
   selectedSnippetCode: string;
-  emptySnippetView: boolean = false;
+  emptySnippetView: boolean = true;
 
   constructor(private snippetService: SnippetService) { }
 

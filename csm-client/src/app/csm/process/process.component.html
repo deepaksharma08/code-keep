@@ -1,8 +1,8 @@
 <div *ngIf="emptySnippetView">
     <span>No saved snippet. Click on <strong>Add Snippet Button</strong> to save snippet</span>
 </div>
-<p-splitter *ngIf="emptySnippetView" [style]="{'height': '70vh'}" [panelSizes]="[60,40]" layout="horizontal"
-    gutter="true">
+<p-splitter *ngIf="!emptySnippetView" [minSizes]="[40,40]" [style]="{'height': '70vh'}" [panelSizes]="[60,40]"
+    layout="horizontal" gutter="true">
     <ng-template pTemplate>
         <div style="overflow-y: auto;">
             <table class="table table-striped">
@@ -31,7 +31,7 @@
     </ng-template>
     <ng-template pTemplate>
         <div style="overflow-y: auto;">
-            <code><pre>{{selectedSnippetCode}}</pre></code>
+            <code><pre style="white-space: pre-wrap;">{{selectedSnippetCode}}</pre></code>
         </div>
     </ng-template>
 </p-splitter>

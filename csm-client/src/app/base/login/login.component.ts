@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   emailValid: boolean = true;
-  passwordValid: boolean;
+  passwordValid: boolean = true;
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -63,18 +63,20 @@ export class LoginComponent implements OnInit {
   focusOut(item: string) {
     switch (item) {
       case 'email':
-        if (this.f['email'].valid) {
-          this.emailValid = true;
-        } else {
-          this.emailValid = false;
-        }
+        this.emailValid = this.f['email'].valid;
         break;
       case 'pass':
-        //
+        this.passwordValid = this.verifyPasswordValidation();
         break;
       default:
         break;
     }
+  }
+
+  private verifyPasswordValidation(): boolean {
+    if (this.f['password'].value.length < 7) {
+      return false;
+    } else return true;
   }
 
 }

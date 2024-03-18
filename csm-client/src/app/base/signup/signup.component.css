@@ -8,14 +8,9 @@
     align-items: center;
 }
 
-.image-div {
-    margin-left: auto;
-}
-
 #child-div {
     background-color: rgba(234, 255, 175, 0.507);
     opacity: 90%;
-    margin-left: 0;
     width: 40%;
     border-radius: 5%;
     padding: 30px;
@@ -28,10 +23,6 @@
     #child-div {
         width: 90%;
         margin-left: auto;
-    }
-
-    .image-div {
-        display: none;
     }
 }
 

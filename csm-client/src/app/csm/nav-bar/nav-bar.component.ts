@@ -35,7 +35,7 @@ export class NavBarComponent implements OnInit {
         document.getElementById('process').classList.remove('active');
         break;
       case 'commands':
-        this.router.navigateByUrl('csm/commands')
+        this.router.navigateByUrl('csm/command')
         document.getElementById('commands').classList.add('active');
         document.getElementById('snippet').classList.remove('active');
         document.getElementById('process').classList.remove('active');
@@ -55,7 +55,7 @@ export class NavBarComponent implements OnInit {
   public snippetDataFromUserReceived(snippetData: SnippetDTO) {
     this.snippetService.saveCodeSnippet(snippetData).subscribe({
       next: (value: SnippetDTO) => {
-        console.warn(value.title);
+        this.router.navigateByUrl('csm/'.concat(value.type))
       }, error: (err: Error) => {
         console.warn(err.message);
       }

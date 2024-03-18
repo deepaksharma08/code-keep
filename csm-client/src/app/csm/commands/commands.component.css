@@ -1,0 +1,19 @@
+:host::ng-deep .p-splitter .p-splitter-gutter {
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s !important;
+    background: #b9cde1 !important;
+}
+
+.snippet-divs {
+    display: block;
+    margin-bottom: 10px;
+    /* Adjust as needed */
+}
+
+#action-items {
+    text-align: center;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+}

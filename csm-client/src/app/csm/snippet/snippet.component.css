@@ -17,3 +17,9 @@
     position: sticky;
     top: 0;
 }
+
+.copy-button {
+    position: relative;
+    float: right;
+    z-index: 9999 !important;
+}
