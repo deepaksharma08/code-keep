@@ -23,3 +23,7 @@
     right: 20px;
     z-index: 9999 !important;
 }
+
+.action-item {
+    cursor: grab;
+}

@@ -20,8 +20,9 @@
                         <td>{{item.description}}</td>
                         <td>
                             <div id="action-items">
-                                <i style="float: left;" class="bi bi-trash"></i>
-                                <i style="float: right;" class="bi bi-pencil"></i>
+                                <i title="Delete Snippet" (click)="deleteSnippet(item)" style="float: left;"
+                                    class="bi bi-trash action-item"></i>
+                                <i style="float: right;" (click)="editSnippet(item)" class="bi bi-pencil"></i>
                             </div>
                         </td>
                     </tr>

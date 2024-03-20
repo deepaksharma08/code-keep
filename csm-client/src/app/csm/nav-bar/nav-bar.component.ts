@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { SnippetDTO } from 'src/app/domain/snippet-response';
 import { InstructionService } from 'src/app/services/instruction.service';
 import { SnippetService } from 'src/app/services/snippet.service';
@@ -17,7 +18,8 @@ export class NavBarComponent implements OnInit {
 
   constructor(private router: Router,
     private snippetService: SnippetService,
-    private instructionService: InstructionService) { }
+    private instructionService: InstructionService,
+    private toast: ToastrService) { }
 
   ngOnInit(): void {
     this.router.navigateByUrl('csm/snippet')
@@ -57,9 +59,11 @@ export class NavBarComponent implements OnInit {
   public snippetDataFromUserReceived(snippetData: SnippetDTO) {
     this.snippetService.saveCodeSnippet(snippetData).subscribe({
       next: (value: SnippetDTO) => {
+        this.router.navigateByUrl('csm/'.concat(value.type));
         this.instructionService.sendInstruction(value.type);
       }, error: (err: Error) => {
-        console.warn(err.message);
+        this.toast.error("There was an error saving your snippet");
+        console.error(err);
       }
     })
   }

@@ -130,6 +130,7 @@ public class SnippetService {
             SnippetResponseDTO tempSnippet = new SnippetResponseDTO();
 
             tempSnippet.setCode(snippet.getCode());
+            tempSnippet.setId(snippet.getId().toString());
             tempSnippet.setUserId(snippet.getUserId().toString());
             tempSnippet.setType(snippet.getType());
             tempSnippet.setDescription(snippet.getDescription());
@@ -138,5 +139,10 @@ public class SnippetService {
             snippetResponseDTOS.add(tempSnippet);
         }
         return snippetResponseDTOS;
+    }
+
+    public String deleteSnippetById(String id) throws Exception {
+        snippetRepository.deleteById(Long.parseLong(id));
+        return "SUCCESS";
     }
 }

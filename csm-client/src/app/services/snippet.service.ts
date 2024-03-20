@@ -9,10 +9,12 @@ const SERVICE_URL = "http://localhost:8080";
 
 const GET_ALL_SNIPPETS = "/getAllSnippets/{USER_ID}";
 const GET_SNIPPET_BY_TYPE = "/getSnippetsByType/{TYPE}";
+const DELETE_SNIPPET = "/deleteSnippet/{SNIPPET_ID}"
 const SAVE_SNIPPET = "/saveSnippetDetails";
 
 const TYPE = "{TYPE}";
 const USER_ID = "{USER_ID}";
+const SNIPPET_ID = "{SNIPPET_ID}";
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +54,14 @@ export class SnippetService {
       .replace(TYPE, type);
 
     return this.httpClient.get<SnippetDTO[]>(url);
+  }
+
+  public deleteSnippetById(id: string): Observable<string> {
+    let url = SERVICE_URL
+      .concat(BASE_SERVICE_URL)
+      .concat(DELETE_SNIPPET)
+      .replace(SNIPPET_ID, id);
+
+    return this.httpClient.get(url, { responseType: 'text' });
   }
 }

@@ -79,6 +79,28 @@ export class CommandsComponent implements OnInit, OnDestroy {
     }
   }
 
+  public deleteSnippet(item: SnippetDTO) {
+    this.snippetService.deleteSnippetById(item.id).subscribe(
+      {
+        next: (status: string) => {
+          if (status === "SUCCESS") {
+            this.toast.success("Snippet deleted successfully!")
+            this.snippets = this.snippets.filter(snippet => snippet.id !== item.id);
+          } else {
+            this.toast.error("There was a problem deleting this snippet");
+          }
+        }, error: (err: Error) => {
+          console.error(err);
+          this.toast.error("There was a problem deleting this snippet");
+        }
+      }
+    );
+  }
+
+  public editSnippet(item: SnippetDTO) {
+    console.warn("Feature will be available in next version.")
+  }
+
 
 
 }

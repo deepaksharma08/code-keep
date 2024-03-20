@@ -35,7 +35,7 @@ export class SnippetComponent implements OnInit, OnDestroy {
         console.error("There was an error handling instruction[snippet component] " + err.message)
       }
     }))
-    
+
     this.getAllCodeSnippet();
   }
 
@@ -77,6 +77,28 @@ export class SnippetComponent implements OnInit, OnDestroy {
     if (instruction === 'snippet') {
       this.getAllCodeSnippet();
     }
+  }
+
+  public deleteSnippet(item: SnippetDTO) {
+    this.snippetService.deleteSnippetById(item.id).subscribe(
+      {
+        next: (status: string) => {
+          if (status === "SUCCESS") {
+            this.toast.success("Snippet deleted successfully!")
+            this.snippets = this.snippets.filter(snippet => snippet.id !== item.id);
+          } else {
+            this.toast.error("There was a problem deleting this snippet");
+          }
+        }, error: (err: Error) => {
+          console.error(err);
+          this.toast.error("There was a problem deleting this snippet");
+        }
+      }
+    );
+  }
+
+  public editSnippet(item: SnippetDTO) {
+    console.warn("Feature will be available in next version.")
   }
 
 }
