@@ -1,4 +1,8 @@
-<p-splitter [style]="{'height': '70vh'}" [panelSizes]="[60,40]" layout="horizontal" gutter="true">
+<div *ngIf="emptySnippetView">
+    <span>No saved snippet. Click on <strong>Add Snippet Button</strong> to save snippet</span>
+</div>
+<p-splitter *ngIf="!emptySnippetView" [style]="{'height': '70vh'}" [panelSizes]="[60,40]" [minSizes]="[40,40]"
+    layout="horizontal" gutter="true">
     <ng-template pTemplate>
         <div style="overflow-y: auto;">
             <table class="table table-striped">
@@ -16,8 +20,9 @@
                         <td>{{item.description}}</td>
                         <td>
                             <div id="action-items">
-                                <i style="float: left;" class="bi bi-trash"></i>
-                                <i style="float: right;" class="bi bi-pencil"></i>
+                                <i title="Delete Snippet" (click)="deleteSnippet(item)" style="float: left;"
+                                    class="bi bi-trash action-item"></i>
+                                <i style="float: right;" (click)="editSnippet(item)" class="bi bi-pencil"></i>
                             </div>
                         </td>
                     </tr>
@@ -26,8 +31,13 @@
         </div>
     </ng-template>
     <ng-template pTemplate>
-        <div style="overflow-y: auto;">
-            <code><pre>{{selectedSnippetCode}}</pre></code>
+        <div>
+            <div>
+                <button title="Copy to Clipboard" (click)="copySnippetToClipBoard()"
+                    class="bi bi-clipboard copy-button"></button>
+            </div>
+            <code><pre style="white-space: pre-wrap;">{{selectedSnippetCode}}</pre></code>
         </div>
+
     </ng-template>
 </p-splitter>

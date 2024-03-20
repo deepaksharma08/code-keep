@@ -1,21 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SnippetService } from 'src/app/services/snippet.service';
 import { SnippetDTO } from 'src/app/domain/snippet-response';
+import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { InstructionService } from 'src/app/services/instruction.service';
 
 @Component({
   selector: 'app-commands',
   templateUrl: './commands.component.html',
   styleUrls: ['./commands.component.css']
 })
-export class CommandsComponent implements OnInit {
+export class CommandsComponent implements OnInit, OnDestroy {
   snippets: SnippetDTO[] = [];
   selectedSnippetCode: string;
   emptySnippetView: boolean = false;
+  subscription: Subscription[] = [];
 
-  constructor(private snippetService: SnippetService) { }
+  constructor(private snippetService: SnippetService,
+    private toast: ToastrService,
+    private instructionService: InstructionService) { }
 
   ngOnInit(): void {
+    this.subscription.push(this.instructionService.getInstruction().subscribe(
+      {
+        next: (instruction: string) => {
+          this.handleInstruction(instruction);
+        }, error: (err: Error) => {
+          console.error("There was an error handling instruction[command component] " + err.message)
+        }
+      }
+    ))
+
     this.getAllCodeSnippet();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.forEach(item => {
+      item.unsubscribe;
+    })
   }
 
   public rowClick(snippet: SnippetDTO) {
@@ -45,5 +67,40 @@ export class CommandsComponent implements OnInit {
       }
     })
   }
+
+  public copySnippetToClipBoard() {
+    navigator.clipboard.writeText(this.selectedSnippetCode);
+    this.toast.success("Copied To Clipboard!!")
+  }
+
+  private handleInstruction(instruction: string) {
+    if (instruction === 'command') {
+      this.getAllCodeSnippet();
+    }
+  }
+
+  public deleteSnippet(item: SnippetDTO) {
+    this.snippetService.deleteSnippetById(item.id).subscribe(
+      {
+        next: (status: string) => {
+          if (status === "SUCCESS") {
+            this.toast.success("Snippet deleted successfully!")
+            this.snippets = this.snippets.filter(snippet => snippet.id !== item.id);
+          } else {
+            this.toast.error("There was a problem deleting this snippet");
+          }
+        }, error: (err: Error) => {
+          console.error(err);
+          this.toast.error("There was a problem deleting this snippet");
+        }
+      }
+    );
+  }
+
+  public editSnippet(item: SnippetDTO) {
+    console.warn("Feature will be available in next version.")
+  }
+
+
 
 }

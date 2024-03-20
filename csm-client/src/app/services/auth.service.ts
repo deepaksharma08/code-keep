@@ -30,4 +30,8 @@ export class AuthService {
         }
         return this.http.post<UserResponse>('http://localhost:8080/v1/api/auth/register', params);
     }
+
+    public getToken(): string {
+       return sessionStorage.getItem("token");
+    }
 }

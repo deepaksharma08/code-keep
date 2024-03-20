@@ -4,7 +4,6 @@ package com.deepakallcode.codesnippetmanager.controllers;
 import com.deepakallcode.codesnippetmanager.models.SnippetResponseDTO;
 import com.deepakallcode.codesnippetmanager.services.SnippetService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,6 +53,19 @@ public class SnippetController {
             response = new ResponseEntity<>(snippets, HttpStatus.OK);
         } catch (Exception e) {
             response = new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
+    @GetMapping("deleteSnippet/{id}")
+    public ResponseEntity<String> deleteSnippetById(@PathVariable("id") String id) {
+        ResponseEntity<String> response = null;
+
+        try {
+            String status = snippetService.deleteSnippetById(id);
+            response = new ResponseEntity<>(status,HttpStatus.OK);
+        } catch (Exception e) {
+            response = new ResponseEntity<>("FAILED", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;
     }
