@@ -5,7 +5,7 @@ import { SnippetDTO } from '../domain/snippet-response';
 
 
 const BASE_SERVICE_URL = "/v1/api/snippet";
-const SERVICE_URL = "http://localhost:8080";
+const SERVICE_URL = "https://code-keep-server.onrender.com";
 
 const GET_ALL_SNIPPETS = "/getAllSnippets/{USER_ID}";
 const GET_SNIPPET_BY_TYPE = "/getSnippetsByType/{TYPE}";
@@ -35,7 +35,6 @@ export class SnippetService {
     }
 
     return this.httpClient.post<SnippetDTO>(url, params);
-    // return of({} as SnippetDTO);
   }
 
   public getAllCodeSnippet(userId: string): Observable<SnippetDTO[]> {

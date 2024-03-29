@@ -20,7 +20,7 @@ export class AuthService {
             email: email,
             password: password
         }
-        return this.http.post<UserResponse>('http://localhost:8080/v1/api/auth/login', params)
+        return this.http.post<UserResponse>('https://code-keep-server.onrender.com/v1/api/auth/login', params)
     }
 
     public register(email: string, password: string): Observable<UserResponse> {
@@ -28,7 +28,7 @@ export class AuthService {
             email: email,
             password: password
         }
-        return this.http.post<UserResponse>('http://localhost:8080/v1/api/auth/register', params);
+        return this.http.post<UserResponse>('https://code-keep-server.onrender.com/v1/api/auth/register', params);
     }
 
     public getToken(): string {
