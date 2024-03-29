@@ -4,19 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f88350b4-11c2-4705-821d-99321975275a" name="Changes" comment="" />
+    <list default="true" id="f88350b4-11c2-4705-821d-99321975275a" name="Changes" comment="final docker file" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2d7OydS4yVPn6zq6ezQpLdlyB7V" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -25,9 +29,15 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/deepaksharma/Desktop/Public Projects/Code Snippet Manager/csm-server"
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/Projects/Deploy Repos/code-keep-client-deploy"
   }
 }]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn package" />
+    </option>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -37,6 +47,76 @@
       <option name="presentableId" value="Default" />
       <updated>1709355906834</updated>
     </task>
+    <task id="LOCAL-00001" summary="code keep v1.0.0">
+      <option name="closed" value="true" />
+      <created>1710872522709</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710872522709</updated>
+    </task>
+    <task id="LOCAL-00002" summary="docker file for deployment">
+      <option name="closed" value="true" />
+      <created>1710875731253</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710875731253</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update in the base image">
+      <option name="closed" value="true" />
+      <created>1710876280738</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1710876280738</updated>
+    </task>
+    <task id="LOCAL-00004" summary="update in the base image">
+      <option name="closed" value="true" />
+      <created>1710876580681</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710876580681</updated>
+    </task>
+    <task id="LOCAL-00005" summary="final docker file">
+      <option name="closed" value="true" />
+      <created>1710880328149</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1710880328149</updated>
+    </task>
+    <task id="LOCAL-00006" summary="final docker file">
+      <option name="closed" value="true" />
+      <created>1710880455764</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1710880455764</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="Dockerfile" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="code keep v1.0.0" />
+    <MESSAGE value="docker file for deployment" />
+    <MESSAGE value="update in the base image" />
+    <MESSAGE value="final docker file" />
+    <option name="LAST_COMMIT_MESSAGE" value="final docker file" />
   </component>
 </project>

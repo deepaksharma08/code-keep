@@ -1,10 +1,11 @@
 {
   "name": "csm-client",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
+    "deploy": "npm install && node --max-old-space-size=512 ./node_modules/@angular/cli/bin/ng build --build-optimizer",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -20,6 +21,7 @@
     "@angular/router": "^14.2.0",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "firebase": "^10.9.0",
     "ng-block-ui": "^4.0.1",
     "ngx-toastr": "^15.0.0",
     "primeng": "^14.0.0",

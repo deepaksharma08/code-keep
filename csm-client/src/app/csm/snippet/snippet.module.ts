@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SplitterModule} from 'primeng/splitter';
 import {TableModule} from 'primeng/table'
 import { SnippetComponent } from './snippet.component';
+import { EditSnippetDialogModule } from 'src/app/shared/edit-snippet-dialog/edit-snippet-dialog.module';
 
 @NgModule({
   declarations: [SnippetComponent],
@@ -11,11 +12,12 @@ import { SnippetComponent } from './snippet.component';
     CommonModule,
     SplitterModule,
     TableModule,
+    EditSnippetDialogModule
   ],
   exports: [
     SplitterModule,
     TableModule,
-    SnippetComponent
+    SnippetComponent,
   ]
 })
 export class SnippetModule { }

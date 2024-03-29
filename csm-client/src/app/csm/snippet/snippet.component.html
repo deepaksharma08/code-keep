@@ -22,7 +22,8 @@
                             <div id="action-items">
                                 <i title="Delete Snippet" (click)="deleteSnippet(item)" style="float: left;"
                                     class="bi bi-trash action-item"></i>
-                                <i style="float: right;" (click)="editSnippet(item)" class="bi bi-pencil"></i>
+                                <i style="float: right;" (click)="editSnippet(item)"
+                                    class="bi bi-pencil action-item"></i>
                             </div>
                         </td>
                     </tr>
@@ -40,3 +41,5 @@
         </div>
     </ng-template>
 </p-splitter>
+
+<edit-snippet-dialog #editDialog (editedSnippet)="editedSnippetReceived($event)"></edit-snippet-dialog>
