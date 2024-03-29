@@ -6,7 +6,6 @@ import { BaseService } from './base.service';
 
 
 const BASE_SERVICE_URL = "/v1/api/snippet";
-const SERVICE_URL = "https://code-keep-server.onrender.com";
 
 const GET_ALL_SNIPPETS = "/getAllSnippets/{USER_ID}";
 const GET_SNIPPET_BY_TYPE = "/getSnippetsByType?type={TYPE}&userId={USER_ID}";
@@ -56,7 +55,6 @@ export class SnippetService extends BaseService {
       .concat(GET_SNIPPET_BY_TYPE)
       .replace(TYPE, type)
       .replace(USER_ID, userId);
-    console.warn(url);
     return this.httpClient.get<SnippetDTO[]>(url);
   }
 
@@ -71,7 +69,6 @@ export class SnippetService extends BaseService {
 
   public saveEdittedSnippet(editedSnippet: SnippetDTO): Observable<SnippetDTO> {
     let url = this.getServiceUrl().concat(BASE_SERVICE_URL).concat(EDIT_SNIPPET);
-    console.warn(url);
     return this.httpClient.post<SnippetDTO>(url, editedSnippet);
   }
 }
