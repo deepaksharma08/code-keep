@@ -1,1 +1,27 @@
+<p-dialog position="center" [closable]="true" id="dialog" [(visible)]="display"
+    [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+    <div>
+        <form [formGroup]="form" style="padding: 5%;">
+            <div class="mb-3">
+                <label for="title">Title</label>
+                <input id="title" formControlName="title" type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="description">Description</label>
+                <textarea rows="2" id="description" formControlName="description" type="text" class="form-control"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="code">Snippet</label>
+                <textarea rows="4" id="code" formControlName="code" class="form-control"></textarea>
+            </div>
+        </form>
+    </div>
+    <ng-template pTemplate="footer">
+        <button id="save-button" type="button" class="bi bi-plus-circle-fill btn btn-primary" (click)="saveChanges()">
+            Save
+        </button>
+        <button id="close-button" type="button" class="bi bi-x-circle-fill btn btn-light"
+            (click)="close()">Close</button>
+    </ng-template>
 
+</p-dialog>

@@ -22,7 +22,11 @@ export class NavBarComponent implements OnInit {
     private toast: ToastrService) { }
 
   ngOnInit(): void {
-    this.router.navigateByUrl('csm/snippet')
+    this.router.navigate(['csm/snippet'], {
+      queryParams: {
+        type: 'snippet'
+      }
+    })
     document.getElementById('snippet').classList.add('active');
   }
 
@@ -33,21 +37,33 @@ export class NavBarComponent implements OnInit {
   public changeActiveTab(id: string) {
     switch (id) {
       case 'snippet':
-        this.router.navigateByUrl('csm/snippet')
+        this.router.navigate(['csm/snippet'], {
+          queryParams: {
+            type: id
+          }
+        })
         document.getElementById('snippet').classList.add('active');
-        document.getElementById('commands').classList.remove('active');
+        document.getElementById('command').classList.remove('active');
         document.getElementById('process').classList.remove('active');
         break;
-      case 'commands':
-        this.router.navigateByUrl('csm/command')
-        document.getElementById('commands').classList.add('active');
+      case 'command':
+        this.router.navigate(['csm/snippet'], {
+          queryParams: {
+            type: 'command'
+          }
+        });
+        document.getElementById('command').classList.add('active');
         document.getElementById('snippet').classList.remove('active');
         document.getElementById('process').classList.remove('active');
         break;
       case 'process':
-        this.router.navigateByUrl('csm/process')
+        this.router.navigate(['csm/snippet'], {
+          queryParams: {
+            type: id
+          }
+        });
         document.getElementById('process').classList.add('active');
-        document.getElementById('commands').classList.remove('active');
+        document.getElementById('command').classList.remove('active');
         document.getElementById('snippet').classList.remove('active');
         break;
       default:
@@ -59,7 +75,12 @@ export class NavBarComponent implements OnInit {
   public snippetDataFromUserReceived(snippetData: SnippetDTO) {
     this.snippetService.saveCodeSnippet(snippetData).subscribe({
       next: (value: SnippetDTO) => {
-        this.router.navigateByUrl('csm/'.concat(value.type));
+        this.router.navigate(['csm/snippet'], {
+          queryParams: {
+            type: snippetData.type
+          }
+        });
+        this.changeActiveTab(snippetData.type);
         this.instructionService.sendInstruction(value.type);
       }, error: (err: Error) => {
         this.toast.error("There was an error saving your snippet");

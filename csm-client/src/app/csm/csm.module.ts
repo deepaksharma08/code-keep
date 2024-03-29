@@ -6,10 +6,7 @@ import { CsmComponent } from './csm.component';
 import { SnippetModule } from './snippet/snippet.module';
 import { NavBarModule } from './nav-bar/nav-bar.module';
 import { RouterModule } from '@angular/router';
-import { SaveSnippetDialogModule } from '../shared/save-snippet-dialog/save-snippet-dialog.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommandsModule } from './commands/commands.module';
-import { ProcessModule } from './process/process.module';
 
 
 
@@ -24,10 +21,7 @@ import { ProcessModule } from './process/process.module';
     SnippetModule,
     NavBarModule,
     RouterModule,
-    SaveSnippetDialogModule,
-    BrowserAnimationsModule,
-    CommandsModule,
-    ProcessModule
+    BrowserAnimationsModule
   ],
 })
 export class CsmModule { }

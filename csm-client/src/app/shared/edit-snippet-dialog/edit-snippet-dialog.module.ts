@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { EditSnippetDialogComponent } from './edit-snippet-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -9,9 +10,11 @@ import { EditSnippetDialogComponent } from './edit-snippet-dialog.component';
   declarations: [EditSnippetDialogComponent],
   imports: [
     CommonModule,
-    DialogModule
+    DialogModule,
+    ReactiveFormsModule
   ],
   exports: [
+    ReactiveFormsModule,
     EditSnippetDialogComponent
   ]
 })

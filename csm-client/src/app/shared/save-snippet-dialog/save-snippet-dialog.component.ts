@@ -37,6 +37,10 @@ export class SaveSnippetDialogComponent implements OnInit {
 
   closeDialog() {
     this.display = false;
+    this.snippetForm.patchValue({
+      snippetText: '',
+      snippetType: 'snippet'
+    })
   }
 
   public saveSnippet() {
