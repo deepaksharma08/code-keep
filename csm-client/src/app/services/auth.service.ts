@@ -2,13 +2,20 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { UserResponse } from "../domain/user-response";
+import { BaseService } from "./base.service";
+
+const BASE_URL = "/v1/api/auth";
+
+const LOGIN_URL = "/login"
+const REGISTER_URL = "/register";
 
 
 @Injectable(
     { providedIn: 'root' }
 )
-export class AuthService {
+export class AuthService extends BaseService {
     constructor(private http: HttpClient) {
+        super()
     }
 
     public isAuthenticUser(): boolean {
@@ -16,22 +23,26 @@ export class AuthService {
     }
 
     public login(email: string, password: string): Observable<UserResponse> {
+        let url = this.getServiceUrl().concat(BASE_URL).concat(LOGIN_URL);
+
         let params = {
             email: email,
             password: password
         }
-        return this.http.post<UserResponse>('https://code-keep-server.onrender.com/v1/api/auth/login', params)
+        return this.http.post<UserResponse>(url, params)
     }
 
     public register(email: string, password: string): Observable<UserResponse> {
+        let url = this.getServiceUrl().concat(BASE_URL).concat(REGISTER_URL);
+
         let params = {
             email: email,
             password: password
         }
-        return this.http.post<UserResponse>('https://code-keep-server.onrender.com/v1/api/auth/register', params);
+        return this.http.post<UserResponse>(url, params);
     }
 
     public getToken(): string {
-       return sessionStorage.getItem("token");
+        return sessionStorage.getItem("token");
     }
 }
