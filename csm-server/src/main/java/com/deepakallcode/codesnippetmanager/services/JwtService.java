@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.SecretKey;
 import java.security.Key;
 import java.security.SignatureException;
 import java.util.Base64;
@@ -35,7 +36,10 @@ public class JwtService {
 
     public boolean verifyToken(String token) {
         try {
-            Jwts.parser().setSigningKey(getSignInKey()).parseClaimsJws(token);
+            Jwts.parser()
+                    .verifyWith(getSignInKey())
+                    .build()
+                    .parseSignedClaims(token);
             return true;
         } catch (MalformedJwtException e) {
             logger.info("Invalid JWT token: " + e.getMessage());
@@ -52,14 +56,14 @@ public class JwtService {
     }
 
     private Claims getAllClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(getSignInKey())
+        return Jwts.parser()
+                .verifyWith(getSignInKey())
                 .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
-    private Key getSignInKey() {
+    private SecretKey getSignInKey() {
         byte[] signInByte = Decoders.BASE64.decode(SIGN_STRING);
         return Keys.hmacShaKeyFor(signInByte);
     }
