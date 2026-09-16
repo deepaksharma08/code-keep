@@ -37,8 +37,7 @@ public class SnippetService {
                 .append("Then after the period give brief description as " + DESCRIPTION_IDENTIFIER + "the description you come up with on what this code does in 200 characters")
                 .append("\n")
                 .append(snippet.getCode());
-        String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + apiKey;
-
+        String url = "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=" + apiKey;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

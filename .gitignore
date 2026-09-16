@@ -6,3 +6,5 @@ node_modules
 .angular
 /csm-client/.angular/
 /csm-client/node_modules/
+
+.idea
